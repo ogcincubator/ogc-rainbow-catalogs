@@ -7,7 +7,7 @@ from openpyxl import load_workbook
 import requests
 from openpyxl.worksheet.worksheet import Worksheet
 
-FLATTEN_CATALOG_HIERARCHY = False
+FLATTEN_CATALOG_HIERARCHY = True
 CATALOG_BASE_URI = 'urn:ogc:defs/'
 
 
