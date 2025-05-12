@@ -70,7 +70,11 @@
       "label": "Definitions hosted by the OGC",
       "hasPart": [
         "urn:ogc:defs/catalogs/hosted/catalogs/hosted/community",
-        "http://www.opengis.net/def/dgiwg"
+        "http://www.opengis.net/def/dgiwg",
+        "https://www.opengis.net/def/CaLAThe",
+        "https://www.opengis.net/def/CaLAThe/5.0",
+        "https://www.opengis.net/def/CaLATheCodeList",
+        "https://www.opengis.net/def/CaLATheCodeList/2.0"
       ]
     },
     {
@@ -78,37 +82,7 @@
       "@type": "dcat:Catalog",
       "label": "Definitions defining the OGC KG implementation",
       "hasPart": [
-        "urn:ogc:defs/catalogs/metamodel/collections/def-type"
-      ]
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/datamodels",
-      "@type": "dcat:Catalog",
-      "label": "OGC Data models",
-      "hasPart": [
-        "urn:ogc:defs/catalogs/datamodels/collections/pipelineml",
-        "urn:ogc:defs/catalogs/datamodels/collections/timeseriesml",
-        "urn:ogc:defs/catalogs/datamodels/collections/geosparql",
-        "urn:ogc:defs/catalogs/datamodels/collections/sensor-model",
-        "urn:ogc:defs/catalogs/datamodels/collections/dggs",
-        "http://www.opengis.net/def/observationType/timeseriesML",
-        "http://www.opengis.net/def/waterml",
-        "https://www.opengis.net/def/schema/hy_features/hyf"
-      ]
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/hosted/catalogs/hosted/community",
-      "@type": "skos:Collection",
-      "label": "Definitions for community projects hosted by the OGC",
-      "hasMember": [
-        "urn:ogc:defs/catalogs/hosted/catalogs/hosted/community/vocabs/calathe"
-      ]
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/metamodel/collections/def-type",
-      "@type": "skos:Collection",
-      "label": "OGC definition types",
-      "hasMember": [
+        "urn:ogc:defs/catalogs/metamodel/collections/def-type",
         "http://www.opengis.net/def/auth",
         "http://www.opengis.net/def/crs",
         "http://www.opengis.net/def/dataType",
@@ -128,15 +102,48 @@
       ]
     },
     {
-      "@id": "urn:ogc:defs/catalogs/register/collections/bblocks",
-      "@type": "skos:Collection",
-      "label": "OGC Building Block registers"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/datamodels/collections/pipelineml",
-      "@type": "skos:Collection",
-      "label": "PipelineML",
-      "hasMember": [
+      "@id": "urn:ogc:defs/catalogs/datamodels",
+      "@type": "dcat:Catalog",
+      "label": "OGC Data models",
+      "hasPart": [
+        "urn:ogc:defs/catalogs/datamodels/collections/pipelineml",
+        "urn:ogc:defs/catalogs/datamodels/collections/timeseriesml",
+        "urn:ogc:defs/catalogs/datamodels/collections/geosparql",
+        "urn:ogc:defs/catalogs/datamodels/collections/sensor-model",
+        "urn:ogc:defs/catalogs/datamodels/collections/dggs",
+        "http://www.opengis.net/def/function/geosparql",
+        "http://www.opengis.net/def/function/geosparql/",
+        "http://www.opengis.net/def/geosparql/funcsrules",
+        "http://www.opengis.net/def/geosparql/reqs",
+        "http://www.opengis.net/def/geosparql/servicedescallfunctions",
+        "http://www.opengis.net/def/geosparql/servicedescallfunctions/1.1",
+        "http://www.opengis.net/def/geosparql/servicedescconformanceclasses",
+        "http://www.opengis.net/def/geosparql/servicedescconformanceclasses/1.1",
+        "http://www.opengis.net/def/geosparql/servicedescextensions",
+        "http://www.opengis.net/def/geosparql/servicedescextensions/1.1",
+        "http://www.opengis.net/def/observationType/timeseriesML",
+        "http://www.opengis.net/def/rule/geosparql",
+        "http://www.opengis.net/def/rule/geosparql/",
+        "http://www.opengis.net/def/sensor-model",
+        "http://www.opengis.net/def/sensor-model-param",
+        "http://www.opengis.net/def/sensor-model-param/BODC",
+        "http://www.opengis.net/def/sensor-model-param/csmwg",
+        "http://www.opengis.net/def/sensor-model-param/xdomes",
+        "http://www.opengis.net/def/sensor-model/BODC",
+        "http://www.opengis.net/def/sensor-model/NTB/2.1/NITF/RPC00B",
+        "http://www.opengis.net/def/sensor-model/csmwg",
+        "http://www.opengis.net/def/sensor-model/xdomes",
+        "http://www.opengis.net/def/timeseries/DataQualityCode",
+        "http://www.opengis.net/def/timeseries/InterpolationCode",
+        "http://www.opengis.net/def/timeseries/ProcessTypeCode",
+        "http://www.opengis.net/def/timeseriesType/timeseriesML/TimeseriesDomainRange",
+        "http://www.opengis.net/def/waterml",
+        "https://www.opengis.net/def/dggs/code/basepoly",
+        "https://www.opengis.net/def/dggs/code/celledgetype",
+        "https://www.opengis.net/def/dggs/code/celltype",
+        "https://www.opengis.net/def/dggs/code/refmodel",
+        "https://www.opengis.net/def/dggs/code/tessellationmethod",
+        "https://www.opengis.net/def/geoxacml-identifier-register",
         "https://www.opengis.net/def/pipelineml",
         "https://www.opengis.net/def/pipelineml/1.0/codelists/assemblyboundtype",
         "https://www.opengis.net/def/pipelineml/1.0/codelists/assemblyclassification",
@@ -313,78 +320,57 @@
         "https://www.opengis.net/def/pipelineml/1.0/codelists/valveoperability",
         "https://www.opengis.net/def/pipelineml/1.0/codelists/valvespecification",
         "https://www.opengis.net/def/pipelineml/1.0/codelists/valvetype",
-        "https://www.opengis.net/def/pipelineml/1.0/codelists/virtualconnectortype"
+        "https://www.opengis.net/def/pipelineml/1.0/codelists/virtualconnectortype",
+        "https://www.opengis.net/def/schema/hy_features/hyf"
       ]
+    },
+    {
+      "@id": "urn:ogc:defs/catalogs/hosted/catalogs/hosted/community",
+      "@type": "skos:Collection",
+      "label": "Definitions for community projects hosted by the OGC",
+      "hasMember": [
+        "urn:ogc:defs/catalogs/hosted/catalogs/hosted/community/vocabs/calathe"
+      ]
+    },
+    {
+      "@id": "urn:ogc:defs/catalogs/metamodel/collections/def-type",
+      "@type": "skos:Collection",
+      "label": "OGC definition types"
+    },
+    {
+      "@id": "urn:ogc:defs/catalogs/register/collections/bblocks",
+      "@type": "skos:Collection",
+      "label": "OGC Building Block registers"
+    },
+    {
+      "@id": "urn:ogc:defs/catalogs/datamodels/collections/pipelineml",
+      "@type": "skos:Collection",
+      "label": "PipelineML"
     },
     {
       "@id": "urn:ogc:defs/catalogs/datamodels/collections/timeseriesml",
       "@type": "skos:Collection",
-      "label": "TimeSeriesML",
-      "hasMember": [
-        "http://www.opengis.net/def/timeseries/DataQualityCode",
-        "http://www.opengis.net/def/timeseries/InterpolationCode",
-        "http://www.opengis.net/def/timeseries/ProcessTypeCode",
-        "http://www.opengis.net/def/timeseriesType/timeseriesML/TimeseriesDomainRange"
-      ]
+      "label": "TimeSeriesML"
     },
     {
       "@id": "urn:ogc:defs/catalogs/hosted/catalogs/hosted/community/vocabs/calathe",
       "@type": "skos:Collection",
-      "label": "CaLAThe",
-      "hasMember": [
-        "https://www.opengis.net/def/CaLAThe",
-        "https://www.opengis.net/def/CaLAThe/5.0",
-        "https://www.opengis.net/def/CaLATheCodeList",
-        "https://www.opengis.net/def/CaLATheCodeList/2.0"
-      ]
+      "label": "CaLAThe"
     },
     {
       "@id": "urn:ogc:defs/catalogs/datamodels/collections/geosparql",
       "@type": "skos:Collection",
-      "label": "GeoSPARQL",
-      "hasMember": [
-        "http://www.opengis.net/def/function/geosparql",
-        "http://www.opengis.net/def/function/geosparql/",
-        "http://www.opengis.net/def/geosparql/funcsrules",
-        "http://www.opengis.net/def/geosparql/reqs",
-        "http://www.opengis.net/def/geosparql/servicedescallfunctions",
-        "http://www.opengis.net/def/geosparql/servicedescallfunctions/1.1",
-        "http://www.opengis.net/def/geosparql/servicedescconformanceclasses",
-        "http://www.opengis.net/def/geosparql/servicedescconformanceclasses/1.1",
-        "http://www.opengis.net/def/geosparql/servicedescextensions",
-        "http://www.opengis.net/def/geosparql/servicedescextensions/1.1",
-        "http://www.opengis.net/def/rule/geosparql",
-        "http://www.opengis.net/def/rule/geosparql/"
-      ]
+      "label": "GeoSPARQL"
     },
     {
       "@id": "urn:ogc:defs/catalogs/datamodels/collections/sensor-model",
       "@type": "skos:Collection",
-      "label": "OGC Sensor Model",
-      "hasMember": [
-        "http://www.opengis.net/def/sensor-model",
-        "http://www.opengis.net/def/sensor-model-param",
-        "http://www.opengis.net/def/sensor-model-param/BODC",
-        "http://www.opengis.net/def/sensor-model-param/csmwg",
-        "http://www.opengis.net/def/sensor-model-param/xdomes",
-        "http://www.opengis.net/def/sensor-model/BODC",
-        "http://www.opengis.net/def/sensor-model/NTB/2.1/NITF/RPC00B",
-        "http://www.opengis.net/def/sensor-model/csmwg",
-        "http://www.opengis.net/def/sensor-model/xdomes"
-      ]
+      "label": "OGC Sensor Model"
     },
     {
       "@id": "urn:ogc:defs/catalogs/datamodels/collections/dggs",
       "@type": "skos:Collection",
-      "label": "Discrete Global Grid System (DGGS)",
-      "hasMember": [
-        "https://www.opengis.net/def/dggs/code/basepoly",
-        "https://www.opengis.net/def/dggs/code/celledgetype",
-        "https://www.opengis.net/def/dggs/code/celltype",
-        "https://www.opengis.net/def/dggs/code/refmodel",
-        "https://www.opengis.net/def/dggs/code/tessellationmethod",
-        "https://www.opengis.net/def/geoxacml-identifier-register"
-      ]
+      "label": "Discrete Global Grid System (DGGS)"
     },
     {
       "@id": "urn:ogc:defs/catalogs/non-ogc",
