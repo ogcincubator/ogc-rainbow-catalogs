@@ -1,0 +1,28 @@
+name: Process online spreadsheet
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  download-and-process:
+    name: Download and process
+    runs-on: ubuntu-latest
+    env:
+      SPREADSHEET_URL: "https://myogc1-my.sharepoint.com/personal/avillar_ogc_org/_layouts/15/download.aspx?share=EXxhHl4MubpMo-3h1UI0lpcB1lcsAX-CdvUsAMGfOQQL4g"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install -r scripts/requirements.txt
+          python scripts/spreadsheet.py
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: '*.jsonld'
+          message: Update mappings
