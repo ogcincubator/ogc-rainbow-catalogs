@@ -28,8 +28,7 @@ def load_worksheet(ws: Worksheet) -> list[dict[str, Any]]:
 
 def _main():
     secrets = json.loads(os.environ.get('ALL_SECRETS', '{}'))
-    print(f"SECRET KEYS: {secrets.keys()}")
-    gsp_confs = {k.lower().replace('sparql_gsp_', ''): json.loads(v)
+    gsp_urls = {k.lower().replace('sparql_gsp_', ''): v
                  for k, v in secrets.items()
                  if k.lower().startswith('sparql_gsp_')}
 
@@ -116,9 +115,12 @@ def _main():
         with open(f'catalogs-{service}.jsonld', 'w') as f:
             json.dump(output, f, indent=2)
 
-        gsp_conf = gsp_confs.get(service)
-        if gsp_conf:
-            print(f"Found GSP configuration for {service} (user {gsp_conf['username']})")
+        gsp_url = gsp_urls.get(service.lower())
+        if gsp_url:
+            print(f"Found GSP configuration for {service}. Pushing data...")
+            r = requests.post(gsp_url, json=output, headers={'Content-type': 'application/ld+json'})
+            r.raise_for_status()
+            print("Push OK")
 
 
 if __name__ == '__main__':
