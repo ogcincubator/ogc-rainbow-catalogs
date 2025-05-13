@@ -87,19 +87,20 @@ def _main():
             catalog_uri = CATALOG_BASE_URI + catalog_uri
             catalog['URI'] = catalog_uri
 
-            catalog_resource = {
-                '@id': catalog_uri,
-                '@type': 'dcat:Catalog' if not parent_catalog else 'skos:Collection',
-                'label': catalog['Label'],
-            }
-            if parent_catalog:
-                parent_catalog_resource = catalogs_by_uri[parent_catalog]['resource']
-                parent_catalog_resource.setdefault(
-                    'hasPart' if parent_catalog_resource['@type'] == 'dcat:Catalog' else 'hasMember', []).append(
-                    catalog_uri
-                )
-            catalog['resource'] = catalog_resource
-            output['@graph'].append(catalog_resource)
+            if not FLATTEN_CATALOG_HIERARCHY or not parent_catalog:
+                catalog_resource = {
+                    '@id': catalog_uri,
+                    '@type': 'dcat:Catalog' if not parent_catalog else 'skos:Collection',
+                    'label': catalog['Label'],
+                }
+                if parent_catalog:
+                    parent_catalog_resource = catalogs_by_uri[parent_catalog]['resource']
+                    parent_catalog_resource.setdefault(
+                        'hasPart' if parent_catalog_resource['@type'] == 'dcat:Catalog' else 'hasMember', []).append(
+                        catalog_uri
+                    )
+                catalog['resource'] = catalog_resource
+                output['@graph'].append(catalog_resource)
 
         for mapping in mappings:
             if not mapping.get('Catalog'):
