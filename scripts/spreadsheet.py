@@ -3,6 +3,7 @@ import os
 from io import BytesIO
 from typing import Any
 
+import yaml
 from openpyxl import load_workbook
 import requests
 from openpyxl.worksheet.worksheet import Worksheet
@@ -26,6 +27,9 @@ def load_worksheet(ws: Worksheet) -> list[dict[str, Any]]:
 
 
 def _main():
+    secrets = os.environ.get('ALL_SECRETS')
+    gsp_confs = {k.lower().replace('sparql_gsp_', ''): v for k, v in json.loads(secrets).items()} if secrets else {}
+
     spreadsheet_url = os.environ.get('SPREADSHEET_URL')
     if not spreadsheet_url:
         raise Exception('SPREADSHEET_URL environment variable is not set')
@@ -34,6 +38,9 @@ def _main():
     response.raise_for_status()
 
     wb = load_workbook(filename=BytesIO(response.content), read_only=True)
+
+    with open('namespaces.yml') as f:
+        namespaces = [{'prefix': p, 'uri': u} for p, u in yaml.safe_load(f).get('namespaces', {}).items()]
 
     for service in ('defs', 'defs-dev'):
         catalogs = load_worksheet(wb[f"{service}-collections"])
@@ -47,6 +54,7 @@ def _main():
                 'dcat': 'http://www.w3.org/ns/dcat#',
                 'skos': 'http://www.w3.org/2004/02/skos/core#',
                 'dct': 'http://purl.org/dc/terms/',
+                'vann': 'http://purl.org/vocab/vann/',
                 'label': 'skos:prefLabel',
                 'hasPart': {
                     '@id': 'dct:hasPart',
@@ -55,10 +63,13 @@ def _main():
                 'hasMember': {
                     '@id': 'skos:member',
                     '@type': '@id',
-                }
+                },
+                'prefix': 'vann:preferredNamespacePrefix',
+                'uri': 'vann:preferredNamespaceUri',
             },
             '@graph': [],
         }
+        output['@graph'].extend(namespaces)
 
         for catalog in catalogs:
             parent_catalog = catalog.get('Parent')
@@ -81,7 +92,7 @@ def _main():
                 parent_catalog_resource = catalogs_by_uri[parent_catalog]['resource']
                 parent_catalog_resource.setdefault(
                     'hasPart' if parent_catalog_resource['@type'] == 'dcat:Catalog' else 'hasMember', []).append(
-                        catalog_uri
+                    catalog_uri
                 )
             catalog['resource'] = catalog_resource
             output['@graph'].append(catalog_resource)
@@ -101,6 +112,10 @@ def _main():
 
         with open(f'catalogs-{service}.jsonld', 'w') as f:
             json.dump(output, f, indent=2)
+
+        gsp_conf = gsp_confs.get(service)
+        if gsp_conf:
+            print(f"Found GSP configuration for {service} (user {gsp_conf['username']})")
 
 
 if __name__ == '__main__':

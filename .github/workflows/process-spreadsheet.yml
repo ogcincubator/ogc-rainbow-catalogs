@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SPREADSHEET_URL: "https://myogc1-my.sharepoint.com/personal/avillar_ogc_org/_layouts/15/download.aspx?share=EXxhHl4MubpMo-3h1UI0lpcB1lcsAX-CdvUsAMGfOQQL4g"
+      ALL_SECRETS: ${{ toJSON(secrets) }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

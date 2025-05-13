@@ -1,0 +1,9 @@
+# Add namespaces as "prefix: uri" key-value mappings
+namespaces:
+  ogc-defs: 'http://www.opengis.net/def/'
+  ogc-cat: 'urn:ogc:defs/catalogs/'
+  datamodels: 'urn:ogc:defs/catalogs/datamodels/collections/'
+  metamodel: 'urn:ogc:defs/catalogs/metamodel/collections/'
+  registers: 'urn:ogc:defs/catalogs/register/collections/'
+  pipeline-ml-cl: 'https://www.opengis.net/def/pipelineml/1.0/codelists/'
+  program: 'http://www.opengis.net/def/program/'
