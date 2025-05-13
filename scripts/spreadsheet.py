@@ -28,8 +28,7 @@ def load_worksheet(ws: Worksheet) -> list[dict[str, Any]]:
 
 def _main():
     secrets = json.loads(os.environ.get('ALL_SECRETS', '{}'))
-    print(f"Found secrets: {list(secrets.keys())}")
-    gsp_confs = {k.lower().replace('sparql_gsp_', ''): v
+    gsp_confs = {k.lower().replace('sparql_gsp_', ''): json.load(v)
                  for k, v in secrets.items()
                  if k.lower().startswith('sparql_gsp_')}
 
