@@ -121,7 +121,7 @@ def _main():
         gsp_url = gsp_urls.get(service.lower())
         if gsp_url:
             print(f"Found GSP configuration for {service}. Pushing data...")
-            r = requests.post(gsp_url, json=output, headers={'Content-type': 'application/ld+json'})
+            r = requests.put(gsp_url, json=output, headers={'Content-type': 'application/ld+json'})
             r.raise_for_status()
             print("Push OK")
 
