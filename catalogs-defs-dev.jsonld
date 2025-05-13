@@ -3,6 +3,7 @@
     "dcat": "http://www.w3.org/ns/dcat#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "dct": "http://purl.org/dc/terms/",
+    "vann": "http://purl.org/vocab/vann/",
     "label": "skos:prefLabel",
     "hasPart": {
       "@id": "dct:hasPart",
@@ -11,9 +12,39 @@
     "hasMember": {
       "@id": "skos:member",
       "@type": "@id"
-    }
+    },
+    "prefix": "vann:preferredNamespacePrefix",
+    "uri": "vann:preferredNamespaceUri"
   },
   "@graph": [
+    {
+      "prefix": "ogc-defs",
+      "uri": "http://www.opengis.net/def/"
+    },
+    {
+      "prefix": "ogc-cat",
+      "uri": "urn:ogc:defs/catalogs/"
+    },
+    {
+      "prefix": "datamodels",
+      "uri": "urn:ogc:defs/catalogs/datamodels/collections/"
+    },
+    {
+      "prefix": "metamodel",
+      "uri": "urn:ogc:defs/catalogs/metamodel/collections/"
+    },
+    {
+      "prefix": "registers",
+      "uri": "urn:ogc:defs/catalogs/register/collections/"
+    },
+    {
+      "prefix": "pipeline-ml-cl",
+      "uri": "https://www.opengis.net/def/pipelineml/1.0/codelists/"
+    },
+    {
+      "prefix": "program",
+      "uri": "http://www.opengis.net/def/program/"
+    },
     {
       "@id": "urn:ogc:defs/catalogs/pipelineml",
       "@type": "dcat:Catalog",
