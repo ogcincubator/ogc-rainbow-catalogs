@@ -1,5 +1,6 @@
 import json
 import os
+import warnings
 from io import BytesIO
 from typing import Any
 
@@ -39,7 +40,8 @@ def _main():
     response = requests.get(spreadsheet_url)
     response.raise_for_status()
 
-    wb = load_workbook(filename=BytesIO(response.content), read_only=True)
+    with warnings.catch_warnings(action='ignore', category=UserWarning):
+        wb = load_workbook(filename=BytesIO(response.content), read_only=True)
 
     with open('namespaces.yml') as f:
         namespaces = [{'prefix': p, 'uri': u} for p, u in yaml.safe_load(f).get('namespaces', {}).items()]
