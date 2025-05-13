@@ -70,7 +70,6 @@
       "@type": "dcat:Catalog",
       "label": "OGC Naming Authority registers",
       "hasPart": [
-        "urn:ogc:defs/catalogs/register/collections/bblocks",
         "http://www.opengis.net/def/curie",
         "http://www.opengis.net/def/derivedCRSType/OGC/1.1",
         "http://www.opengis.net/def/docs",
@@ -100,7 +99,6 @@
       "@type": "dcat:Catalog",
       "label": "Definitions hosted by the OGC",
       "hasPart": [
-        "urn:ogc:defs/catalogs/hosted/collections/community",
         "http://www.opengis.net/def/dgiwg",
         "https://www.opengis.net/def/CaLAThe",
         "https://www.opengis.net/def/CaLAThe/5.0",
@@ -113,7 +111,6 @@
       "@type": "dcat:Catalog",
       "label": "Definitions defining the OGC KG implementation",
       "hasPart": [
-        "urn:ogc:defs/catalogs/metamodel/collections/def-type",
         "http://www.opengis.net/def/auth",
         "http://www.opengis.net/def/crs",
         "http://www.opengis.net/def/dataType",
@@ -137,11 +134,6 @@
       "@type": "dcat:Catalog",
       "label": "OGC Data models",
       "hasPart": [
-        "urn:ogc:defs/catalogs/datamodels/collections/pipelineml",
-        "urn:ogc:defs/catalogs/datamodels/collections/timeseriesml",
-        "urn:ogc:defs/catalogs/datamodels/collections/geosparql",
-        "urn:ogc:defs/catalogs/datamodels/collections/sensor-model",
-        "urn:ogc:defs/catalogs/datamodels/collections/dggs",
         "http://www.opengis.net/def/function/geosparql",
         "http://www.opengis.net/def/function/geosparql/",
         "http://www.opengis.net/def/geosparql/funcsrules",
@@ -354,54 +346,6 @@
         "https://www.opengis.net/def/pipelineml/1.0/codelists/virtualconnectortype",
         "https://www.opengis.net/def/schema/hy_features/hyf"
       ]
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/hosted/collections/community",
-      "@type": "skos:Collection",
-      "label": "Definitions for community projects hosted by the OGC",
-      "hasMember": [
-        "urn:ogc:defs/catalogs/hosted/collections/community/vocabs/calathe"
-      ]
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/metamodel/collections/def-type",
-      "@type": "skos:Collection",
-      "label": "OGC definition types"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/register/collections/bblocks",
-      "@type": "skos:Collection",
-      "label": "OGC Building Block registers"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/datamodels/collections/pipelineml",
-      "@type": "skos:Collection",
-      "label": "PipelineML"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/datamodels/collections/timeseriesml",
-      "@type": "skos:Collection",
-      "label": "TimeSeriesML"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/hosted/collections/community/vocabs/calathe",
-      "@type": "skos:Collection",
-      "label": "CaLAThe"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/datamodels/collections/geosparql",
-      "@type": "skos:Collection",
-      "label": "GeoSPARQL"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/datamodels/collections/sensor-model",
-      "@type": "skos:Collection",
-      "label": "OGC Sensor Model"
-    },
-    {
-      "@id": "urn:ogc:defs/catalogs/datamodels/collections/dggs",
-      "@type": "skos:Collection",
-      "label": "Discrete Global Grid System (DGGS)"
     },
     {
       "@id": "urn:ogc:defs/catalogs/non-ogc",
