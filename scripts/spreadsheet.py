@@ -9,7 +9,7 @@ from openpyxl import load_workbook
 import requests
 from openpyxl.worksheet.worksheet import Worksheet
 
-FLATTEN_CATALOG_HIERARCHY = True
+FLATTEN_CATALOG_HIERARCHY = False
 CATALOG_BASE_URI = 'urn:ogc:defs/'
 
 
@@ -64,10 +64,6 @@ def _main():
                     '@id': 'dct:hasPart',
                     '@type': '@id',
                 },
-                'hasMember': {
-                    '@id': 'skos:member',
-                    '@type': '@id',
-                },
                 'prefix': 'vann:preferredNamespacePrefix',
                 'uri': 'vann:preferredNamespaceUri',
             },
@@ -90,15 +86,12 @@ def _main():
             if not FLATTEN_CATALOG_HIERARCHY or not parent_catalog:
                 catalog_resource = {
                     '@id': catalog_uri,
-                    '@type': 'dcat:Catalog' if not parent_catalog else 'skos:Collection',
+                    '@type': 'dcat:TopCatalog' if not parent_catalog else 'dcat:Catalog',
                     'label': catalog['Label'],
                 }
                 if parent_catalog:
                     parent_catalog_resource = catalogs_by_uri[parent_catalog]['resource']
-                    parent_catalog_resource.setdefault(
-                        'hasPart' if parent_catalog_resource['@type'] == 'dcat:Catalog' else 'hasMember', []).append(
-                        catalog_uri
-                    )
+                    parent_catalog_resource.setdefault('hasPart', []).append(catalog_uri)
                 catalog['resource'] = catalog_resource
                 output['@graph'].append(catalog_resource)
 
@@ -112,8 +105,7 @@ def _main():
                 while catalog.get('Parent'):
                     catalog = catalogs_by_uri[catalog['Parent']]
 
-            catalog['resource'].setdefault('hasPart' if not catalog['Parent'] else 'hasMember', []).append(
-                mapping['Concept Scheme'])
+            catalog['resource'].setdefault('hasPart', []).append(mapping['Concept Scheme'])
 
         with open(f'catalogs-{service}.jsonld', 'w') as f:
             json.dump(output, f, indent=2)
