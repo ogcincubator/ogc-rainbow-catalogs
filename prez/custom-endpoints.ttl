@@ -1,5 +1,3 @@
-## Custom endpoints for Prez, with flexible hierarchies
-
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix ex: <http://example.org/ogc/> .
@@ -41,73 +39,73 @@ ex:items1-listing a ont:DynamicEndpoint,
     rdfs:label "Items 1 Listing" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1" ;
     ont:relevantShapes ex:shape-R0-HL3,
-        ex:shape-R0-HL3-1, ex:shape-R0-HL3-2.
+        ex:shape-R0-HL3-1, ex:shape-R0-HL3-2, ex:shape-R0-HL3-3 .
 
 ex:items1-object a ont:DynamicEndpoint,
         ont:ObjectEndpoint ;
     rdfs:label "Items 1 Object" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}" ;
     ont:relevantShapes ex:shape-R0-HL3,
-        ex:shape-R0-HL3-1, ex:shape-R0-HL3-2.
+        ex:shape-R0-HL3-1, ex:shape-R0-HL3-2, ex:shape-R0-HL3-3 .
 
 ex:items2-listing a ont:DynamicEndpoint,
         ont:ListingEndpoint ;
     rdfs:label "Items 2 Listing" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2" ;
     ont:relevantShapes ex:shape-R0-HL4,
-        ex:shape-R0-HL4-1, ex:shape-R0-HL4-2 .
+        ex:shape-R0-HL4-1, ex:shape-R0-HL4-2, ex:shape-R0-HL4-3 .
 
 ex:items2-object a ont:DynamicEndpoint,
         ont:ObjectEndpoint ;
     rdfs:label "Items 2 Object" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2/{item2Id}" ;
     ont:relevantShapes ex:shape-R0-HL4,
-        ex:shape-R0-HL4-1, ex:shape-R0-HL4-2 .
+        ex:shape-R0-HL4-1, ex:shape-R0-HL4-2, ex:shape-R0-HL4-3 .
 
 ex:items3-listing a ont:DynamicEndpoint,
         ont:ListingEndpoint ;
     rdfs:label "Items 3 Listing" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2/{item2Id}/it3" ;
     ont:relevantShapes ex:shape-R0-HL5,
-        ex:shape-R0-HL5-1, ex:shape-R0-HL5-2 .
+        ex:shape-R0-HL5-1, ex:shape-R0-HL5-2, ex:shape-R0-HL5-3 .
 
 ex:items3-object a ont:DynamicEndpoint,
         ont:ObjectEndpoint ;
     rdfs:label "Items 3 Object" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2/{item2Id}/it3/{item3Id}" ;
     ont:relevantShapes ex:shape-R0-HL5,
-        ex:shape-R0-HL5-1, ex:shape-R0-HL5-2 .
+        ex:shape-R0-HL5-1, ex:shape-R0-HL5-2, ex:shape-R0-HL5-3 .
 
 ex:items4-listing a ont:DynamicEndpoint,
         ont:ListingEndpoint ;
     rdfs:label "Items 4 Listing" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2/{item2Id}/it3/{item3Id}/it4" ;
     ont:relevantShapes ex:shape-R0-HL6,
-        ex:shape-R0-HL6-1, ex:shape-R0-HL6-2 .
+        ex:shape-R0-HL6-1, ex:shape-R0-HL6-2, ex:shape-R0-HL6-3 .
 
 ex:items4-object a ont:DynamicEndpoint,
         ont:ObjectEndpoint ;
     rdfs:label "Items 4 Object" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2/{item2Id}/it3/{item3Id}/it4/{item4Id}" ;
     ont:relevantShapes ex:shape-R0-HL6,
-        ex:shape-R0-HL6-1, ex:shape-R0-HL6-2 .
+        ex:shape-R0-HL6-1, ex:shape-R0-HL6-2, ex:shape-R0-HL6-3 .
 
 ex:items5-listing a ont:DynamicEndpoint,
         ont:ListingEndpoint ;
     rdfs:label "Items 5 Listing" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2/{item2Id}/it3/{item3Id}/it4/{item4Id}/it5" ;
     ont:relevantShapes ex:shape-R0-HL7,
-        ex:shape-R0-HL7-1, ex:shape-R0-HL7-2 .
+        ex:shape-R0-HL7-1, ex:shape-R0-HL7-2, ex:shape-R0-HL7-3 .
 
 ex:items5-object a ont:DynamicEndpoint,
         ont:ObjectEndpoint ;
     rdfs:label "Items 5 Object" ;
     ont:apiPath "/catalogs/{catalogId}/col/{recordsCollectionId}/it1/{item1Id}/it2/{item2Id}/it3/{item3Id}/it4/{item4Id}/it5/{item5Id}" ;
     ont:relevantShapes ex:shape-R0-HL7,
-        ex:shape-R0-HL7-1, ex:shape-R0-HL7-2 .
+        ex:shape-R0-HL7-1, ex:shape-R0-HL7-2, ex:shape-R0-HL7-3 .
 
 # 1st level
-## TopCatalog with hasPart to Catalog, Collection, Dataset, Resource, ConceptScheme
+## TopCatalog with hasPart to Catalog, Collection, Dataset, Resource, ConceptScheme 
 ex:shape-R0-HL1 a sh:NodeShape ;
     sh:property [ sh:or ( [ sh:class skos:Collection ] [ sh:class dcat:Dataset ] [ sh:class dcat:Resource ] [ sh:class skos:ConceptScheme ] [ sh:class dcat:Catalog ] ) ;
             sh:path dcterms:hasPart ] ;
@@ -157,6 +155,16 @@ ex:shape-R0-HL3-2 a sh:NodeShape ;
     sh:targetClass skos:Concept ;
     ont:hierarchyLevel 3 .
 
+## TopCatalog -hasPart> Ontology <isDefinedBy- DatatypeProperty/ObjectProperty/Class
+ex:shape-R0-HL3-3 a sh:NodeShape ;
+    sh:property
+        [ sh:class dcat:TopCatalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class owl:Ontology ;
+            sh:path rdfs:isDefinedBy ] ;
+    sh:targetClass owl:DatatypeProperty, owl:ObjectProperty, owl:Class, rdfs:Class ;
+    ont:hierarchyLevel 3 .
+
 # 4th level
 ## TopCatalog -hasPart> Catalog -hasPart> ConceptScheme <inScheme- Concept
 ex:shape-R0-HL4 a sh:NodeShape ;
@@ -189,8 +197,20 @@ ex:shape-R0-HL4-2 a sh:NodeShape ;
         [ sh:class dcat:Catalog ;
             sh:path ( [ sh:inversePath skos:member] [ sh:inversePath dcterms:hasPart ] ) ],
         [ sh:class skos:Collection ;
-            sh:path [ sh:inversePath skos:member] ] ;
+            sh:path [ sh:inversePath skos:member ] ] ;
     sh:targetClass skos:Concept ;
+    ont:hierarchyLevel 4 .
+
+## TopCatalog -hasPart> Catalog -hasPart> Ontology <isDefinedBy- DatatypeProperty/ObjectProperty/Class
+ex:shape-R0-HL4-3 a sh:NodeShape ;
+    sh:property
+        [ sh:class dcat:TopCatalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class owl:Ontology ;
+            sh:path rdfs:isDefinedBy ] ;
+    sh:targetClass owl:DatatypeProperty, owl:ObjectProperty, owl:Class, rdfs:Class ;
     ont:hierarchyLevel 4 .
 
 # 5th level
@@ -233,6 +253,20 @@ ex:shape-R0-HL5-2 a sh:NodeShape ;
         [ sh:class skos:Collection ;
             sh:path [ sh:inversePath skos:member] ] ;
     sh:targetClass skos:Concept ;
+    ont:hierarchyLevel 5 .
+
+## TopCatalog -hasPart> Catalog -hasPart> Catalog -hasPart> Ontology <isDefinedBy- DatatypeProperty/ObjectProperty/Class
+ex:shape-R0-HL5-3 a sh:NodeShape ;
+    sh:property
+         [ sh:class dcat:TopCatalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class owl:Ontology ;
+            sh:path rdfs:isDefinedBy ] ;
+    sh:targetClass owl:DatatypeProperty, owl:ObjectProperty, owl:Class, rdfs:Class ;
     ont:hierarchyLevel 5 .
 
 # 6th level
@@ -281,6 +315,22 @@ ex:shape-R0-HL6-2 a sh:NodeShape ;
         [ sh:class skos:Collection ;
             sh:path [ sh:inversePath skos:member] ] ;
     sh:targetClass skos:Concept ;
+    ont:hierarchyLevel 6 .
+
+## TopCatalog -hasPart> Catalog -hasPart> Catalog -hasPart> Catalog -hasPart> Ontology <isDefinedBy- DatatypeProperty/ObjectProperty/Class
+ex:shape-R0-HL6-3 a sh:NodeShape ;
+    sh:property
+        [ sh:class dcat:TopCatalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class owl:Ontology ;
+            sh:path rdfs:isDefinedBy ] ;
+    sh:targetClass owl:DatatypeProperty, owl:ObjectProperty, owl:Class, rdfs:Class ;
     ont:hierarchyLevel 6 .
 
 # 7th level
@@ -337,3 +387,20 @@ ex:shape-R0-HL7-2 a sh:NodeShape ;
     sh:targetClass skos:Concept ;
     ont:hierarchyLevel 7 .
 
+## TopCatalog -hasPart> Catalog -hasPart> Catalog -hasPart> Catalog -hasPart> Catalog -hasPart> Ontology <isDefinedBy- DatatypeProperty/ObjectProperty/Class
+ex:shape-R0-HL6-3 a sh:NodeShape ;
+    sh:property
+        [ sh:class dcat:TopCatalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class dcat:Catalog ;
+            sh:path ( rdfs:isDefinedBy [ sh:inversePath dcterms:hasPart ] ) ],
+        [ sh:class owl:Ontology ;
+            sh:path rdfs:isDefinedBy ] ;
+    sh:targetClass owl:DatatypeProperty, owl:ObjectProperty, owl:Class, rdfs:Class ;
+    ont:hierarchyLevel 6 .
