@@ -9,10 +9,6 @@
       "@id": "dct:hasPart",
       "@type": "@id"
     },
-    "hasMember": {
-      "@id": "skos:member",
-      "@type": "@id"
-    },
     "prefix": "vann:preferredNamespacePrefix",
     "uri": "vann:preferredNamespaceUri"
   },
@@ -47,37 +43,37 @@
     },
     {
       "@id": "urn:ogc:defs/catalogs/pipelineml",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "PipelineML"
     },
     {
       "@id": "urn:ogc:defs/catalogs/oms",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "Observations, Measurements, and Samples (OMS)"
     },
     {
       "@id": "urn:ogc:defs/catalogs/dggs",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "Discrete Global Grid Systems (DGGS)"
     },
     {
       "@id": "urn:ogc:defs/catalogs/geosparql",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "GeoSPARQL"
     },
     {
       "@id": "urn:ogc:defs/catalogs/CaLAThe",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "Cadastre and Land Administration Thesaurus (CaLAThe)"
     },
     {
       "@id": "urn:ogc:defs/catalogs/def",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "Definitions identified by OGC URIs"
     },
     {
       "@id": "urn:ogc:defs/catalogs/def-type",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "OGC definition types",
       "hasPart": [
         "http://www.opengis.net/def/auth",
@@ -90,7 +86,7 @@
     },
     {
       "@id": "urn:ogc:defs/catalogs/register",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "OGC Naming Authority registers",
       "hasPart": [
         "http://www.opengis.net/def/geotiff-tag",
@@ -108,7 +104,7 @@
     },
     {
       "@id": "urn:ogc:defs/catalogs/timeseriesml",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "TimeSeriesML",
       "hasPart": [
         "http://www.opengis.net/def/timeseries/DataQualityCode",
@@ -119,7 +115,7 @@
     },
     {
       "@id": "urn:ogc:defs/catalogs/hosted",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "Definitions hosted by the OGC",
       "hasPart": [
         "http://www.opengis.net/def/dgiwg"
@@ -127,7 +123,7 @@
     },
     {
       "@id": "urn:ogc:defs/catalogs/non-ogc",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "Non-OGC definitions hosted",
       "hasPart": [
         "http://www.opengis.net/def/ietf-rfc-4646",
@@ -137,7 +133,7 @@
     },
     {
       "@id": "urn:ogc:defs/bblocks",
-      "@type": "dcat:Catalog",
+      "@type": "dcat:TopCatalog",
       "label": "OGC Building Blocks",
       "hasPart": [
         "https://opengeospatial.github.io/bblocks/"
