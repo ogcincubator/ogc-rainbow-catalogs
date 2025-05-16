@@ -8,6 +8,7 @@ import yaml
 from openpyxl import load_workbook
 import requests
 from openpyxl.worksheet.worksheet import Worksheet
+import rfc3987
 
 FLATTEN_CATALOG_HIERARCHY = False
 CATALOG_BASE_URI = 'urn:ogc:defs/'
@@ -75,12 +76,15 @@ def _main():
             parent_catalog = catalog.get('Parent')
 
             catalog_uri = catalog['URIFragment']
-            root_catalog = catalog
-            while root_catalog.get('Parent'):
-                root_catalog = catalogs_by_uri[root_catalog['Parent']]
-                catalog_uri = root_catalog['URIFragment'] + '/' + catalog_uri
 
-            catalog_uri = CATALOG_BASE_URI + catalog_uri
+            if not rfc3987.match(catalog_uri, rule='absolute_URI'):
+                root_catalog = catalog
+                while root_catalog.get('Parent'):
+                    root_catalog = catalogs_by_uri[root_catalog['Parent']]
+                    catalog_uri = root_catalog['URIFragment'] + '/' + catalog_uri
+
+                catalog_uri = CATALOG_BASE_URI + catalog_uri
+
             catalog['URI'] = catalog_uri
 
             if not FLATTEN_CATALOG_HIERARCHY or not parent_catalog:

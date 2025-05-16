@@ -1,3 +1,4 @@
 openpyxl
 requests
 pyyaml
+rfc3987
