@@ -97,6 +97,7 @@
       "label": "Definitions hosted by the OGC",
       "hasPart": [
         "urn:ogc:defs/catalogs/hosted/collections/community",
+        "http://def.isotc211.org/codelists/",
         "http://www.opengis.net/def/dgiwg"
       ]
     },
@@ -412,6 +413,11 @@
         "https://www.opengis.net/def/dggs/code/tessellationmethod",
         "https://www.opengis.net/def/geoxacml-identifier-register"
       ]
+    },
+    {
+      "@id": "http://def.isotc211.org/codelists/",
+      "@type": "dcat:Catalog",
+      "label": "ISO TC-211 Codelist Vocabularies"
     },
     {
       "@id": "urn:ogc:defs/catalogs/non-ogc",
