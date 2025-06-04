@@ -1,0 +1,127 @@
+services:
+
+  fuseki:
+    image: dockerogc/fuseki
+    environment:
+      # Admin password - needs to be changed
+      ADMIN_PASSWORD: password
+
+      # Name for the default dataset that Fuseki will create.
+      # More "FUSEKI_DATASET_" entries can be added.
+      FUSEKI_DATASET_OGC: fuseki-ogc
+
+    ports:
+      # Fuseki will be available on port 8261
+      - "8261:3030"
+
+    volumes:
+      # This will make data persistent and available as a local "fuseki-data" directory.
+      - ./fuseki-data:/fuseki
+
+    restart: unless-stopped
+
+    # Limit the amount of logging entries that are preserved
+    logging:
+      driver: "json-file"
+      options:
+        max-file: 5
+        max-size: 10m
+
+    # Restart the container if it freezes for some reason
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://fuseki:3030" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+    # Fuseki will try and use all available memory otherwise
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+
+  prez-backend:
+    image: dockerogc/prez
+    depends_on:
+      - fuseki
+    environment:
+      # This is used for reverse-proxying
+      APP_ROOT_PATH: /prez-backend
+
+      PROXY_HEADERS: 'true'
+      FORWARDED_ALLOW_IPS: '*'
+      SPARQL_ENDPOINT: http://fuseki:3030/fuseki-ogc/query
+      PREZ_TITLE: OGC Rainbow
+      PREZ_DESC: OGC Rainbow
+
+      # The external URL for the service
+      SYSTEM_URI: https://defs.opengis.net/prez-backend/
+
+      # The external URL for the Prez UI instance
+      PREZ_UI_URL: https://defs.opengis.net/prez/
+
+      # Enable a passthru SPARQL endpoint service
+      ENABLE_SPARQL_ENDPOINT: 'true'
+
+      # The following sets up our custom structure for resource URLs / hierarchies
+      CUSTOM_ENDPOINTS: 'true'
+      ENDPOINT_STRUCTURE: '["catalogs", "col", "it1", "it2", "it3", "it4", "it5"]'
+
+    ports:
+      # Prez backend will be available on port 8265
+      - "8265:8000"
+
+    restart: unless-stopped
+
+    # Limit the amount of logging entries that are preserved
+    logging:
+      driver: "json-file"
+      options:
+        max-file: 5
+        max-size: 10m
+
+  prez-ui:
+    image: ghcr.io/ogcincubator/ogc-prez-ui
+    depends_on:
+      - prez-backend
+      - varnish
+    environment:
+      # Prez backend external URL
+      NUXT_PUBLIC_PREZ_API_ENDPOINT: https://defs.opengis.net/prez-backend
+
+      # Title for the HTML pages
+      NUXT_PUBLIC_APP_TITLE: OGC RAINBOW
+
+      # The base URL used for reverse-proxying
+      NUXT_APP_BASE_URL: /prez/
+    ports:
+      # Prez UI will be available on port 8263
+      - "8263:8080"
+
+    restart: unless-stopped
+
+    # Limit the amount of logging entries that are preserved
+    logging:
+      driver: "json-file"
+      options:
+        max-file: 5
+        max-size: 10m
+
+  # Optional Varnish container for HTTP caching
+  varnish:
+    image: varnish:7.7.1
+    depends_on:
+      - prez-backend
+
+    # Increasing http_resp_hdr_len is necessary because Prez uses really long "Link" HTTP headers
+    command: '-p http_resp_hdr_len=32768'
+
+    # Custom varnish default.vcl
+    volumes:
+      - "./varnish-default.vcl:/etc/varnish/default.vcl:ro"
+    tmpfs:
+      - /var/lib/varnish/varnishd:exec
+    ports:
+      # Varnish will be available on port 8262
+      - "8262:80"
