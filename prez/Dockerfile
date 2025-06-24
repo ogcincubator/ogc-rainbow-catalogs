@@ -1,4 +1,4 @@
-FROM ghcr.io/rdflib/prez:4
+FROM ghcr.io/rdflib/prez:4.11.1
 
 COPY custom-endpoints.ttl .
 
