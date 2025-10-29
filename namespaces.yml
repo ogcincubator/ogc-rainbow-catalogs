@@ -7,3 +7,4 @@ namespaces:
   registers: 'urn:ogc:defs/catalogs/register/collections/'
   pipeline-ml-cl: 'https://www.opengis.net/def/pipelineml/1.0/codelists/'
   program: 'http://www.opengis.net/def/program/'
+  geopose: 'https://w3id.org/ogc/geopose/'
