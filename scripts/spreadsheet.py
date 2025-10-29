@@ -123,12 +123,16 @@ def _main():
             with open(f'catalogs-{service}.jsonld', 'w') as f:
                 json.dump(output, f, indent=2)
 
-            gsp_url = gsp_urls.get(re.sub(f'[^a-z0-9_]', '_', service.lower()))
+            gsp_conf_key = re.sub(f'[^a-z0-9_]', '_', service.lower())
+            print(f"Testing '{gsp_conf_key}'")
+            gsp_url = gsp_urls.get(gsp_conf_key)
             if gsp_url:
                 print(f"Found GSP configuration for {service}. Pushing data...")
                 r = requests.put(gsp_url, json=output, headers={'Content-type': 'application/ld+json'})
                 r.raise_for_status()
                 print("Push OK")
+            else:
+                print(f"No GSP configuration found for {service}")
             print(f'Service {service} done.')
         except Exception as e:
             print(f'Found exception when updating data for {service}: {e}', file=sys.stderr)
