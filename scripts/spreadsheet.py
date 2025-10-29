@@ -128,7 +128,8 @@ def _main():
             gsp_url = gsp_urls.get(gsp_conf_key)
             if gsp_url:
                 print(f"Found GSP configuration for {service}. Pushing data...")
-                r = requests.put(gsp_url, json=output, headers={'Content-type': 'application/ld+json'})
+                r = requests.put(gsp_url, json=output, headers={'Content-type': 'application/ld+json'},
+                                 timeout=(5, 60))
                 r.raise_for_status()
                 print("Push OK")
             else:
@@ -138,9 +139,9 @@ def _main():
             print(f'Found exception when updating data for {service}: {e}', file=sys.stderr)
             has_errors = True
 
-        if has_errors:
-            print('Exiting with errors', file=sys.stderr)
-            sys.exit(1)
+    if has_errors:
+        print('Exiting with errors', file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == '__main__':
