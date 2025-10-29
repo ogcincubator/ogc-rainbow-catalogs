@@ -42,6 +42,10 @@
       "uri": "http://www.opengis.net/def/program/"
     },
     {
+      "prefix": "geopose",
+      "uri": "https://w3id.org/ogc/geopose/"
+    },
+    {
       "@id": "urn:ogc:defs/catalogs/pipelineml",
       "@type": "dcat:TopCatalog",
       "label": "PipelineML"
@@ -99,7 +103,9 @@
         "http://www.opengis.net/def/tms",
         "http://www.opengis.net/def/wkss",
         "http://www.opengis.net/def/wkss/OGC",
-        "https://www.opengis.net/def/schema/hy_features/hyf"
+        "https://www.opengis.net/def/schema/hy_features/hyf",
+        "https://www.opengis.net/def/security/1.0/codelist/authentication",
+        "https://w3id.org/ogc/geopose"
       ]
     },
     {
