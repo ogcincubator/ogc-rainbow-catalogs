@@ -31,10 +31,12 @@ def load_worksheet(ws: Worksheet) -> list[dict[str, Any]]:
 
 
 def _main():
+    print('Starting spreadsheet processing')
     secrets = json.loads(os.environ.get('ALL_SECRETS', '{}'))
     gsp_urls = {k.lower().replace('sparql_gsp_', ''): v
                  for k, v in secrets.items()
                  if k.lower().startswith('sparql_gsp_')}
+    print(f"Found GSP configurations: {','.join(gsp_urls.keys())}")
 
     spreadsheet_url = os.environ.get('SPREADSHEET_URL')
     if not spreadsheet_url:
@@ -49,8 +51,11 @@ def _main():
     with open('namespaces.yml') as f:
         namespaces = [{'prefix': p, 'uri': u} for p, u in yaml.safe_load(f).get('namespaces', {}).items()]
 
+    print('Spreadsheet and namespaces loaded.')
+
     has_errors = False
     for service in ('defs', 'defs-dev'):
+        print(f'Processing service {service}')
         try:
             catalogs = load_worksheet(wb[f"{service}-collections"])
             mappings = load_worksheet(wb[f"{service}"])
@@ -124,6 +129,7 @@ def _main():
                 r = requests.put(gsp_url, json=output, headers={'Content-type': 'application/ld+json'})
                 r.raise_for_status()
                 print("Push OK")
+            print(f'Service {service} done.')
         except Exception as e:
             print(f'Found exception when updating data for {service}: {e}', file=sys.stderr)
             has_errors = True
